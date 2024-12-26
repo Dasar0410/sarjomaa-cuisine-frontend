@@ -1,7 +1,7 @@
 function RecipePages() {
     return (
         <div>
-        <h1>RecipePages</h1>
+        <h1 className="">RecipePages</h1>
         </div>
     )
 }

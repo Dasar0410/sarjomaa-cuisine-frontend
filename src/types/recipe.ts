@@ -2,10 +2,21 @@ export interface Recipe {
     id: number
     title: string
     description: string
-    ingredients: JSON
-    steps: JSON
+    ingredients: Ingredient[]
+    steps: Step[]
     cuisine: string
     created_at: string
     image_url: string
     creator: number
+  }
+
+  export interface Step{
+    stepNumber: number
+    instruction: string
+  }
+
+  export interface Ingredient{
+    name: string
+    quantity: number
+    measurementType: string
   }
