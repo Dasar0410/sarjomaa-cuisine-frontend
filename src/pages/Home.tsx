@@ -25,7 +25,7 @@ function Home() {
         <div>
             <NavigationBar />
             <section className="bg-green-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
+            <div className="max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
         
         {/* Left side: text */}
         <div className="w-1/2 space-y-6  ">
