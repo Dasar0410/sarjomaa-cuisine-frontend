@@ -25,9 +25,11 @@ function Home() {
         <div>
             <NavigationBar />
             <h1 className=''>Home</h1>
+            <div className='card-container flex flex-wrap'>
             {recipes.map((recipe) => (
                 <RecipeCard recipe={recipe} /> 
             ))}
+            </div>
         </div>
     );
 }

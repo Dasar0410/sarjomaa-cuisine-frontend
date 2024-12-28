@@ -2,7 +2,7 @@ import React from "react";
 
 function NavigationBar() {
   return (
-    <nav className="bg-gray-800 text-white p-4">
+    <nav className="bg-orange-100 p-4">
       <div className="container mx-auto px-4 md:flex items-center gap-6">
         {/* Logo */}
         <div className="flex items-center justify-between md:w-auto w-full"></div>
