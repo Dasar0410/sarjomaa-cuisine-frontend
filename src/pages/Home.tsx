@@ -30,7 +30,7 @@ function Home() {
         {/* Left side: text */}
         <div className="w-1/2 space-y-6  ">
           <h1 className="text-5xl font-bold leading-tight">
-            Cook Big <br /> Eat Big<br></br><span className="text-green-300">Get Huge</span>
+            Reinvent, <br /> Rediscover <br></br><span className="text-green-300">Cooking</span>
           </h1>
           <p className="text-gray-100">
             With Sarjomaa Cuisine <br />
@@ -50,12 +50,14 @@ function Home() {
         </div>
       </div>
     </section>
-  
+            {/* make card under clickable and lead to the recipepage containing info on the recipe clicked  */}
+            <a href='recipes/1' className='text-3xl text-center'>
             <div className='card-container flex flex-wrap justify-center'>
             {recipes.map((recipe) => (
                 <RecipeCard recipe={recipe} /> 
             ))}
             </div>
+            </a>
         </div>
     );
 }
