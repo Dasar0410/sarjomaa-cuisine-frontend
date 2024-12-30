@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchRecipeById } from '../services/recipeService'
 import { Recipe } from '../types/recipe'
+import NavigationBar from '../components/NavigationBar'
+import TitleInstructionCards from '../components/TitleInstructionCard'
+import IngredientsCard from '../components/IngredientsCard'
 function RecipePages() {
     const {id} = useParams<{ id: string}>() // recipes/:id
     console.log(id)
@@ -20,9 +23,16 @@ function RecipePages() {
 
 
     return (
-        <div>
-        <h1 className="">RecipePages</h1>
-        </div>
+        <>
+        <NavigationBar/>
+        <div className='allCards mx-10 flex flex-row'>
+
+        {recipe && <IngredientsCard recipe={recipe} />}
+       {recipe && <TitleInstructionCards recipe={recipe} />}
+        
+
+       </div>
+        </>
     )
 }
 
