@@ -25,8 +25,9 @@ function RecipePages() {
     return (
         <>
         <NavigationBar/>
-        <div className='allCards mx-10 flex flex-row'>
-
+        <div className='allCards mx-10 flex flex-row flex-wrap justify-center'>
+        
+        {recipe && <img src={recipe.image_url} alt={recipe.title} className='recipePageImage'/>}
         {recipe && <IngredientsCard recipe={recipe} />}
        {recipe && <TitleInstructionCards recipe={recipe} />}
         

@@ -1,3 +1,11 @@
 #root {
   
 }
+
+.recipePageImage {
+    width: 75vw;
+    height: 42vw;
+    margin-left: 12.5vw;
+    margin-right: 12.5vw;
+    margin-top: 2rem;
+}
