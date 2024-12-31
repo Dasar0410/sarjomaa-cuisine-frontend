@@ -6,13 +6,18 @@ function TitleInstructionCards({ recipe }: { recipe: Recipe }){
 
 
 return(
-<section className="shadow-lg p-8 mx-8 justify-center">
-    <div className='flex flex-col items-center text-center'>
-        <h1 className='text-6xl mb-2 font-light'>{recipe.title}</h1>
-        <p className='text-2xl'>{recipe.description}</p>
-        {recipe.steps.map((step, index) => (
-                <ul>{step.stepNumber}: {step.instruction}</ul>
-                ))}
+<section className="shadow-lg p-8 mx-8 justify-center rounded-2xl bg-white">
+    <div className=' leading-loose'>
+        <div className='flex flex-col items-center text-center'>
+        <h1 className='text-5xl mb-8 mt-8 font-bold'>{recipe.title}</h1>
+        <p className='text-1xl text-gray-800 mb-8'>{recipe.description}</p>    
+        </div>
+        <h2 className="text-2xl font-semibold mt-8 mb-4 ml-4">Instructions</h2>
+        <div className='list-decimal ml-4 space-y-2'>
+        {recipe.steps.map((step) => (
+            <ul className='list-decimal ml-4 space-y-2'>{step.stepNumber}: {step.instruction}</ul>
+        ))}
+            </div>
     </div>
 </section>
 )
