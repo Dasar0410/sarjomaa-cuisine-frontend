@@ -3,7 +3,7 @@ import Logo from "../assets/bread.svg";
 
 function NavigationBar() {
   return (
-    <nav className="bg-green-800 text-white">
+    <nav className="bg-prime text-white">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://sarjomaa.com" className="flex items-center space-x-2 rtl:space-x-reverse">
           <img src={Logo} className="h-9" alt="Flowbite Logo" />
@@ -16,7 +16,7 @@ function NavigationBar() {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-800 dark:bg-gray-800 md:dark:bg-green-800 dark:border-gray-700">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-prime dark:bg-gray-800 md:dark:bg-prime dark:border-gray-700">
             <li>
               <a href="#" className="block py-2 px-3 text-white rounded md:bg-transparent md:text-white md:p-0 dark:text-white">Home</a>
             </li>
