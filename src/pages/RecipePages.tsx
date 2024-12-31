@@ -28,7 +28,7 @@ function RecipePages() {
         <div className=''><NavigationBar/></div>
         <div className='allCards mx-10 flex flex-row flex-wrap justify-center'>
         
-        {recipe && <img src={recipe.image_url} alt={recipe.title} className='recipePageImage my-10'/>}
+        {recipe && <img src={recipe.image_url} alt={recipe.title} className='recipePageImage my-10  object-cover'/>}
         {recipe && <IngredientsCard recipe={recipe} />}
        {recipe && <TitleInstructionCards recipe={recipe} />}
         

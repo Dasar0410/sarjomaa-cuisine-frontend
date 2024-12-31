@@ -18,6 +18,6 @@ export interface Recipe {
   export interface Ingredient{
     name: string
     unit: string
-    quantity: number
+    amount: number
     
   }

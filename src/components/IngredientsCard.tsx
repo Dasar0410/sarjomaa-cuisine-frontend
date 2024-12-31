@@ -7,7 +7,7 @@ function IngredientsCard({recipe}: {recipe: Recipe}) {
             <h3 className='font-semibold'>Ingredients</h3>
             <ul>
                 {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient.name} - {ingredient.quantity} {ingredient.unit}</li>
+                    <li key={index}>{ingredient.name} - {ingredient.amount} {ingredient.unit}</li>
                 ))}
             </ul>
         </div>
