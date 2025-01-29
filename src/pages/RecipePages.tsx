@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchRecipeById } from '../services/recipeService'
 import { Recipe } from '../types/recipe'

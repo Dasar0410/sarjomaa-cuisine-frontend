@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import RecipeCard from '../components/RecipeCard';
 import { Recipe } from '../types/recipe';
