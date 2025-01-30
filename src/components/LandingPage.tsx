@@ -9,12 +9,12 @@ function LandingPage() {
                 <h1 className="text-5xl font-bold leading-tight">
                     Reinvent, <br /> Rediscover <br></br><span className="text-green-300">Cooking</span>
                 </h1>
-                <p className="text-gray-100">
+                <p className="text-gray-100 font-medium">
                     With Sarjomaa Cuisine <br />
                 </p>
                 <a 
                     href="#recipes" 
-                    className="inline-block bg-green-500 hover:bg-green-600 px-6 py-3 rounded-md text-white font-medium transition"
+                    className="inline-block bg-green-500 hover:bg-green-600 px-6 py-3 rounded-md text-gray-100 font-medium transition"
                 >
                     Explore Recipes
                 </a>

@@ -25,7 +25,8 @@ function Home() {
             <NavigationBar />
             <LandingPage />
             {/* make card under clickable and lead to the recipepage containing info on the recipe clicked  */}
-            <a href='recipes/' className='text-3xl text-center'>
+            <p className=''>What's New!</p>
+            <a className='text-3xl text-center'>
             <div className='card-container flex flex-wrap justify-center'>
             {recipes.map((recipe) => (
                 <Link 
