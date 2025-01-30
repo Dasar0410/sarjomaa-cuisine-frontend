@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import RecipeCard from '../components/RecipeCard';
 import { Recipe } from '../types/recipe';
-import { fetchAllRecipes, fetchRecipeByCount } from '../services/recipeService';
+import {fetchRecipeByCount } from '../services/recipeService';
 import LandingPage from '../components/LandingPage';
 import { Link } from 'react-router-dom';
 
