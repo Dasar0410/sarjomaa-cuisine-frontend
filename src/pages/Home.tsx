@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import RecipeCard from '../components/RecipeCard';
 import { Recipe } from '../types/recipe';
-import { fetchAllRecipes } from '../services/recipeService';
+import { fetchAllRecipes, fetchRecipeByCount } from '../services/recipeService';
 import LandingPage from '../components/LandingPage';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ function Home() {
 
     useEffect(() => {
         const getRecipes = async () => {
-            const data = await fetchAllRecipes(); // fetch all recipes
+            const data = await fetchRecipeByCount(4); // fetch 4 newest recipes // TODO change to variable
             setRecipes(data); 
             console.log(data);
         }
