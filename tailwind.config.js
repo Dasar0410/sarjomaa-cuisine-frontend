@@ -8,10 +8,12 @@ export default {
     extend: {
       colors: {
         prime: "#166534", //potential: #1A7B42  #4C9A2A
-        lighprime: "#C3D09A",
+        lightprime: "#16A34A",
         brandGreen: "#00FF00",
         txtColor: "#333333", //Obsidian black
-        cardColor: "#FAFAFA"
+        cardColor: "#FAFAFA",
+        borderColor: "#A3C293",
+        accentColor: "#D84315" //Amber
         // Add as many single colors as you like
       },
     },

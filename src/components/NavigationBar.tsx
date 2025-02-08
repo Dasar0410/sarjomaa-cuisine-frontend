@@ -2,7 +2,7 @@ import Logo from "../assets/bread.svg";
 
 function NavigationBar() {
   return (
-    <nav className="bg-prime text-gray-200">
+    <nav className="bg-prime text-white">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-2 rtl:space-x-reverse">
           <img src={Logo} className="h-9" alt="Flowbite Logo" />

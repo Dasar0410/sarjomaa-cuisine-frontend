@@ -14,3 +14,14 @@ export const fetchRecipeByCount = async (count: number): Promise<Recipe[]> => {
   const response = await fetch(`http://localhost:8080/recipes/card/${count}`)
   return await response.json()
 }
+
+export const addRecipe = async (recipe: Recipe): Promise<Recipe> => {
+  const response = await fetch('http://localhost:8080/recipes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(recipe)
+  })
+  return await response.json()
+}
