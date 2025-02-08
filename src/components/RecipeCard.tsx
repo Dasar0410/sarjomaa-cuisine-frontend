@@ -4,8 +4,8 @@ import { Recipe } from '../types/recipe'
 
 function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
-    <div className="bg-white m-4 max-w-xs rounded-2xl overflow-hidden shadow-lg">
-      <img className="h-64 w-96" src={recipe.image_url} alt={recipe.title}></img>
+    <div className="overflow-hidden bg-cardColor m-4 max-w-xs rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <img className="h-64 w-96 transition-transform duration-300 hover:scale-105 hover:-translate-y-1" src={recipe.image_url} alt={recipe.title}></img>
       <div className="px-6 py-4"> 
         <div className="font-bold text-xl mb-2">{recipe.title}</div>
         <p className="text-gray-700 text-base h-16">{recipe.description}</p>
