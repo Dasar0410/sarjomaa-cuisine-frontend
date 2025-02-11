@@ -28,8 +28,8 @@ function Home() {
             
             <a className='text-3xl text-center'>
             <div className='justify-center'>
-            <p className='text-accentColor'>What's New!</p>
-                <div className='p-8 card-container inline-flex center flex-wrap justify-center bg-lightprime rounded-3xl shadow-xl' >
+            <p className='text-accentColor '>What's New!</p>
+                <div className='bg-prime p-8 card-container inline-flex center flex-wrap justify-center  rounded-3xl shadow-2xl' >
                
                 {recipes.map((recipe) => (
                     <Link 

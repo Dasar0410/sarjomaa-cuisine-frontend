@@ -1,7 +1,7 @@
 
 function LandingPage() {
   return (
-    <section className="bg-green-800 text-white">
+    <section className= " text-white">
         <div className="max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
 
             {/* Left side: text */}
