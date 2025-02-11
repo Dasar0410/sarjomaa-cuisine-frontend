@@ -6,7 +6,7 @@ import { Recipe } from '../types/recipe';
 function NewRecipe() {
   const [recipe, setRecipe] = useState<Recipe>({
       title: "",
-      id: 100,
+      //id: 101,
       created_at: new Date().toISOString(),
       creator: 1,
       description: "",
@@ -20,6 +20,7 @@ function handleSubmit(event: FormEvent) {
   event.preventDefault();
   console.log(recipe);
   addRecipe(recipe);
+  
   
 
   }
