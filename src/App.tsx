@@ -9,14 +9,14 @@ function App() {
 
 
   return (
-    <>
+    <div className='scroll-smooth!'>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/recipes/:id" element={<RecipePage />} />
       <Route path='/recipes' element={<AllRecipes />} />
       <Route path='/add-recipe' element={<AddRecipe />} />
       </Routes>
-    </>
+    </div>
   )
 }
 

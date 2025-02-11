@@ -21,15 +21,15 @@ function Home() {
     },[]);
 
     return (
-        <div>
+        <div className=''>
             <NavigationBar />
             <LandingPage />
             {/* make card under clickable and lead to the recipepage containing info on the recipe clicked  */}
             
-            <a className='text-3xl text-center'>
-            <div className='justify-center'>
-            <p className='text-accentColor '>What's New!</p>
-                <div className='bg-prime p-8 card-container inline-flex center flex-wrap justify-center  rounded-3xl shadow-2xl' >
+            <div className='text-3xl text-center'>
+            <div className='justify-center' id='recipes'>
+            <p className=''>What's New!</p>
+                <div className='md:bg-prime p-8 mb-12 card-container inline-flex center flex-wrap justify-center  rounded-3xl shadow-2xl'>
                
                 {recipes.map((recipe) => (
                     <Link 
@@ -42,7 +42,7 @@ function Home() {
                 ))}
                 </div>
             </div>
-            </a>
+            </div>
         </div>
     );
 }
