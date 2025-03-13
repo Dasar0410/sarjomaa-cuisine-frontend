@@ -11,7 +11,7 @@ export default {
         lightprime: "#16A34A",
         brandGreen: "#00FF00",
         txtColor: "#333333", //Obsidian black
-        cardColor: "#FAFAFA",
+        cardColor: 		"hsl(143, 64%, 95%)",
         borderColor: "#A3C293",
         accentColor: "#D84315" //Amber
         // Add as many single colors as you like

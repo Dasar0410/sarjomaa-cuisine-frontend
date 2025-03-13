@@ -28,7 +28,7 @@ function Home() {
             
             <div className='text-3xl text-center'>
             <div className='justify-center' id='recipes'>
-            <p className=''>What's New!</p>
+            <p className='text-white'>What's New!</p>
                 <div className='md:bg-prime p-8 mb-12 card-container inline-flex center flex-wrap justify-center  rounded-3xl shadow-2xl'>
                
                 {recipes.map((recipe) => (
