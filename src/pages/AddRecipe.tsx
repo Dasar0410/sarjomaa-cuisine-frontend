@@ -21,6 +21,8 @@ function NewRecipe() {
     amount: 0
   });
 
+  const [currentStep, setCurrentStep] = useState<string>("");
+
 function handleSubmit(event: FormEvent) {
   event.preventDefault();
   console.log(recipe);
@@ -127,7 +129,51 @@ function handleSubmit(event: FormEvent) {
 {/* Steps section */}
 <div className="mb-6">
   <h3 className='text-lg font-medium'>Steps</h3>
+  <div className="flex gap-2 mb-2">
+    <input
+      type="text"
+      name="step"
+      placeholder="Add a step"
+      value={currentStep || ""}
+      onChange={(e) => setCurrentStep(e.target.value)}
+      className="border p-2 flex-1"
+    />
+    <button
+      type="button"
+      onClick={() => {
+        if (currentStep?.trim()) {
+          setRecipe({ 
+            ...recipe, 
+            steps: [...recipe.steps, { 
+              instruction: currentStep, 
+              stepNumber: recipe.steps.length + 1 
+            }] 
+          });
+          setCurrentStep("");
+        }
+      }}
+      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      Add Step
+    </button>
   </div>
+  {recipe.steps.map((step, index) => (
+    <li key={index} className="flex items-center gap-2">
+      <span>{step.stepNumber}. {step.instruction}</span>
+      <button 
+        type="button" 
+        onClick={() => {
+          setRecipe(prev => ({
+            ...prev,
+            steps: prev.steps.filter((_, i) => i !== index)
+          }));
+        }} 
+        className="text-red-500">
+        Remove
+      </button>
+    </li>
+  ))}
+  </div>
+  
 
 
       <input type="text" name="image_url" value={recipe.image_url} onChange={handleChange} placeholder="Image URL" required className="border p-2 w-full" />
