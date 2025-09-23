@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchRecipeById } from '../services/recipeService'
 import { Recipe } from '../types/recipe'
 import NavigationBar from '../components/NavigationBar'
 import TitleInstructionCards from '../components/TitleInstructionCard'
 import IngredientsCard from '../components/IngredientsCard'
+import { getRecipeById } from '../api/api'
 function RecipePages() {
     const {id} = useParams<{ id: string}>() // recipes/:id
     console.log(id)
     const [recipe, setRecipe] = useState<Recipe | null>(null)
 
     useEffect(() => {
-            const getRecipe = async () => {
-                const data = await fetchRecipeById(Number(id)); // fetch all recipes
+            const fetchRecipeById = async () => {
+                const data = await getRecipeById(Number(id));
                 setRecipe(data);
                 console.log(data);
             }
-            getRecipe();
-        },[]);
-
-    
-
+            fetchRecipeById();
+        },[id]);
 
     return (
         <>

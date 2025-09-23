@@ -1,22 +1,22 @@
-import {fetchRecipeByCount } from '../services/recipeService';
 import { Recipe } from '../types/recipe';
 import { useEffect, useState } from 'react';
 import RecipeCard from '../components/RecipeCard';
 import { Link } from 'react-router-dom';
 import NavigationBar from '../components/NavigationBar'
 import FilterSearch from '../components/FilterSearch';
+import { getRecipes } from '../api/api';
 
 function AllRecipes() {
     const [recipes, setRecipes] = useState<Recipe[]>([]); // set initial state to empty array
     // const searchterm functionality tba
 
     useEffect(() => {
-        const getRecipes = async () => {
-            const data = await fetchRecipeByCount(999); // fetch 999 newest recipes // TODO change to variable. 999 is probably not a good long term solution
+        const fetchRecipes = async () => {
+            const data = await getRecipes();
             setRecipes(data); 
             console.log(data);
         }
-        getRecipes();
+        fetchRecipes();
     },[]);  
     return (
         <div> 

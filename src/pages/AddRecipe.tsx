@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
-import { addRecipe } from '../services/recipeService';
-import { Recipe, Ingredient,Step } from '../types/recipe';
+import { Recipe, Ingredient} from '../types/recipe';
+import { addRecipe } from '../api/api';
 
 function NewRecipe() {
   const [recipe, setRecipe] = useState<Recipe>({

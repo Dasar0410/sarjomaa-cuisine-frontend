@@ -3,22 +3,22 @@ import { useEffect, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import RecipeCard from '../components/RecipeCard';
 import { Recipe } from '../types/recipe';
-import {fetchRecipeByCount } from '../services/recipeService';
 import LandingPage from '../components/LandingPage';
 import { Link } from 'react-router-dom';
+import * as api from '../api/api';
 
 function Home() {
     const [recipes, setRecipes] = useState<Recipe[]>([]); // set initial state to empty array
     // const searchterm functionality tba
 
+    const fetchRecipes = async () => {
+        const data = await api.getRecipeCard(4);
+        setRecipes(data);
+    };
+
     useEffect(() => {
-        const getRecipes = async () => {
-            const data = await fetchRecipeByCount(4); // fetch 4 newest recipes // TODO change to variable
-            setRecipes(data); 
-            console.log(data);
-        }
-        getRecipes();
-    },[]);
+        fetchRecipes();
+    }, []);
 
     return (
         <div className=''>
