@@ -5,8 +5,8 @@ import { User, Session } from "@supabase/supabase-js";
 interface AuthContextType {
     //currentUser: User | null;
     session: Session | null;
-    signUp: (email: string, password: string) => Promise<{ success: boolean; error?: string; data?: any }>;
-    //signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string; data?: any }>;
+    signUp: (username: string, email: string, password: string) => Promise<{ success: boolean; error?: string; data?: any }>;
+    signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string; data?: any }>;
     //signOut: () => Promise<void>;
     //loading: boolean;
 }
@@ -35,10 +35,15 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
             
 
     // Sign Up
-    const signUp = async (email: string, password: string) => {
+    const signUp = async (username: string, email: string, password: string) => {
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
+            options: {
+                data: {
+                    display_name: username
+                }
+            }
         });
 
         if (error) {
@@ -48,8 +53,20 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         return { success: true, data };
     }
 
+    const signIn = async (email: string, password: string) => {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+        if(error) {
+            console.error("Error signing in", error.message)
+            return { success: false, error: error.message };
+        }
+        return { success: true, data };
+    }
+
     return (
-        <AuthContext.Provider value={{ session, signUp }}>
+        <AuthContext.Provider value={{ session, signUp, signIn }}>
             {children}
         </AuthContext.Provider>
     );
