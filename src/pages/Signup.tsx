@@ -21,11 +21,7 @@ const Signup = () => {
 
             if (result.success) {
                 console.log("Sign up successful!", result.data)
-                const signInResult = await signIn(email, password)
-                if(signInResult.success){
-                    navigate('/')
-                } else {console.error("Unexpected error during sign in:", signInResult.error)}
-                
+                navigate('/')
             }
         } catch (err) {
             console.error("Unexpected error during sign up:", err)

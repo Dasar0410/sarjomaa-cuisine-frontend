@@ -7,7 +7,7 @@ interface AuthContextType {
     session: Session | null;
     signUp: (username: string, email: string, password: string) => Promise<{ success: boolean; error?: string; data?: any }>;
     signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string; data?: any }>;
-    //signOut: () => Promise<void>;
+    signOut: () => Promise<{success: boolean; error?: string}>;
     //loading: boolean;
 }
 
@@ -27,10 +27,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
             setSession(session);
         })
 
-        supabase.auth.onAuthStateChange((_event, session) => { 
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => { 
             setSession(session);
         })
 
+        return () => subscription.unsubscribe() // Add cleanup!
     }, []);
             
 
@@ -65,8 +66,19 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         return { success: true, data };
     }
 
+    const signOut = async () => {
+        const {error} = await supabase.auth.signOut()
+
+        if(error){
+            console.error("Error signing out", error.message)
+            return { success: false, error: error.message }
+        }
+
+        return { success: true};
+    }
+
     return (
-        <AuthContext.Provider value={{ session, signUp, signIn }}>
+        <AuthContext.Provider value={{ session, signUp, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );
