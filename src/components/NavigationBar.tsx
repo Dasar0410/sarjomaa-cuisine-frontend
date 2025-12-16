@@ -1,6 +1,18 @@
 import Logo from "../assets/bread.svg";
+import { UserAuth } from '../context/AuthContext'
 
 function NavigationBar() {
+  const {signOut, session} = UserAuth()
+
+  const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    try{
+      await signOut()
+    } catch (error) {
+      console.error("Error signing out:", error)
+    }
+  }
+
   return (
     <nav className="bg-prime text-white">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -29,7 +41,17 @@ function NavigationBar() {
               <a href="#" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">Profile</a>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">About</a>
+              {session &&(
+              <button 
+                    onClick={handleSignOut} 
+                    className="block py-2 px-3 rounded text-white hover:text-gray-300 bg-transparent border-none cursor-pointer font-medium">Sign Out</button>
+              )}
+              
+              {!session &&(
+               <a href="/signup" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">Sign Up</a>
+              )}
+
+              
             </li>
           </ul>
         </div>
