@@ -14,7 +14,7 @@ function NavigationBar() {
   }
 
   return (
-    <nav className="bg-prime text-white">
+    <nav className="bg-primary text-primary-foreground sticky top-0 z-50 shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-2 rtl:space-x-reverse">
           <img src={Logo} className="h-9" alt="Flowbite Logo" />
@@ -26,29 +26,29 @@ function NavigationBar() {
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-prime dark:bg-gray-800 md:dark:bg-prime dark:border-gray-700">
+        <div className="hidden w-full md:block md:w-auto text-brand" id="navbar-default">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-border rounded-lg bg-background md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-primary dark:bg-background md:dark:bg-primary">
             <li>
-              <a href="/" className="block py-2 px-3 rounded md:bg-transparent hover:text-gray-300 md:text-white md:p-0">Home</a>
+              <a href="/" className="block py-2 px-3 rounded md:bg-transparent hover:opacity-80 md:text-primary-foreground md:p-0">Home</a>
             </li>
             <li>
-              <a href="/recipes" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">Recipes</a>
+              <a href="/recipes" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Recipes</a>
             </li>
             <li>
-              <a href="/add-recipe" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">Add Recipe</a>
+              <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Add Recipe</a>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">Profile</a>
+              <a href="#" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Profile</a>
             </li>
             <li>
               {session &&(
               <button 
                     onClick={handleSignOut} 
-                    className="block py-2 px-3 rounded text-white hover:text-gray-300 bg-transparent border-none cursor-pointer font-medium">Sign Out</button>
+                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium">Sign Out</button>
               )}
               
               {!session &&(
-               <a href="/signup" className="block py-2 px-3 rounded text-white hover:text-gray-300 md:bg-transparent md:p-0">Sign Up</a>
+               <a href="/signup" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Sign Up</a>
               )}
 
               

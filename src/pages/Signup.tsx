@@ -1,7 +1,7 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext'
+import NavigationBar from '@/components/NavigationBar'
 const Signup = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -33,6 +33,7 @@ const Signup = () => {
 
     return(
     <div>
+        <NavigationBar />
         <form onSubmit={handleSignUp}>
             <h2>Sign up!</h2>
             <p>Already have an account? <Link to= '/signin'>Sign in!</Link> </p>
