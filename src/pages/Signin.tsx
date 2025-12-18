@@ -2,6 +2,7 @@ import { useState } from "react"
 import { UserAuth } from "../context/AuthContext"
 import { useNavigate } from 'react-router-dom'
 import NavigationBar from "@/components/NavigationBar"
+import { SigninForm } from "@/components/SigninForm"
 
 function Signin() {
     const [email, setEmail] = useState("")
@@ -31,6 +32,12 @@ function Signin() {
     return(
     <div>
         <NavigationBar />
+                <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+                    <div className="w-full max-w-sm">
+                        <SigninForm />
+                    </div>
+                </div>
+
         <form onSubmit={handleSignIn}>
             <h2>Sign in!</h2>
             <div>
