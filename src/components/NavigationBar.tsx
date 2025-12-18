@@ -38,13 +38,10 @@ function NavigationBar() {
               <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Add Recipe</a>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Profile</a>
-            </li>
-            <li>
               {session &&(
               <button 
                     onClick={handleSignOut} 
-                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium">Sign Out</button>
+                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium md:p-0">Sign Out</button>
               )}
               
               {!session &&(
