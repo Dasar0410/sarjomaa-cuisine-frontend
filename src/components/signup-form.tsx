@@ -42,6 +42,7 @@ const formSchema = z.object({
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     const [loading, setLoading] = useState(false)
+    const [serverError, setServerError] = useState<string | null>(null)
     const navigate = useNavigate()
     const { signUp } = UserAuth()
     
@@ -60,6 +61,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
     async function onSubmit(data: z.infer<typeof formSchema>) {
       setLoading(true)
+      setServerError(null) // Clear previous errors
       
       try {
             const result = await signUp(data.username, data.email, data.password)
@@ -67,9 +69,12 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             if (result.success) {
                 console.log("Sign up successful!", result.data)
                 navigate('/')
+            } else if (result.error) {
+                setServerError(result.error)
             }
         } catch (err) {
             console.error("Unexpected error during sign up:", err)
+            setServerError("An unexpected error occurred. Please try again.")
         } finally {
             setLoading(false)
         }
@@ -86,6 +91,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
+            {serverError && (
+              <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md mb-4">
+                <p className="text-sm font-medium">{serverError}</p>
+              </div>
+            )}
             <Field>
               <FieldLabel htmlFor="username">Username</FieldLabel>
               <Input id="username" type="text" placeholder="" {...form.register("username")} />
