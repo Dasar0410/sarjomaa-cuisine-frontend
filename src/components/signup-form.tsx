@@ -91,11 +91,6 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
-            {serverError && (
-              <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md mb-4">
-                <p className="text-sm font-medium">{serverError}</p>
-              </div>
-            )}
             <Field>
               <FieldLabel htmlFor="username">Username</FieldLabel>
               <Input id="username" type="text" placeholder="" {...form.register("username")} />
@@ -131,6 +126,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               {errors.confirmPassword && <p className="text-sm text-red-600 mt-1">{errors.confirmPassword.message}</p>}
               <FieldDescription>Please confirm your password.</FieldDescription>
             </Field>
+            {serverError && (
+              <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md mb-4">
+                <p className="text-sm font-medium">{serverError}</p>
+              </div>
+            )}
             <FieldGroup>
               <Field>
                 <Button type="submit" disabled={loading}>
