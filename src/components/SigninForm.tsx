@@ -86,8 +86,7 @@ export function SigninForm({ ...props }: React.ComponentProps<typeof Card>) {
               />
               {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
               <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
+                Use the email address associated with your account.
               </FieldDescription>
             </Field>
             <Field>
