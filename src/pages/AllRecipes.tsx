@@ -22,7 +22,6 @@ function AllRecipes() {
         <div> 
             <NavigationBar />
             <FilterSearch />
-                        <a href='recipes/' className='text-3xl text-center'>
             <div className='card-container flex flex-wrap justify-center'>
             {recipes.map((recipe) => (
                 <Link 
@@ -34,7 +33,6 @@ function AllRecipes() {
                 </Link>
             ))}
             </div>
-            </a>
         
         </div>
     )
