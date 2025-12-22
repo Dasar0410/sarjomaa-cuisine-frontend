@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import { Recipe, Ingredient} from '../types/recipe';
 import { addRecipe } from '../api/api';
+import imageCompression from "browser-image-compression";
 
 function NewRecipe() {
   const [recipe, setRecipe] = useState<Recipe>({
@@ -23,10 +24,30 @@ function NewRecipe() {
 
   const [currentStep, setCurrentStep] = useState<string>("");
 
-function handleSubmit(event: FormEvent) {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  async function compressRecipeImage(file: File) {
+  const options = {
+    maxSizeMB: 1,          
+    maxWidthOrHeight: 1600,
+    useWebWorker: true,
+    fileType: "image/webp",
+    initialQuality: 0.8,
+  };
+
+  const compressed = await imageCompression(file, options);
+
+  return compressed;
+
+  }
+  function handleSubmit(event: FormEvent) {
   event.preventDefault();
   console.log(recipe);
-  addRecipe(recipe);
+  if (!selectedImage) {
+    alert("Please select an image for the recipe.");
+    return;
+  }   
+  addRecipe(recipe, selectedImage);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -48,6 +69,13 @@ function handleSubmit(event: FormEvent) {
         ingredients: [...prev.ingredients, currentIngredient]
       }));
       setCurrentIngredient({ name: "", unit: "g", amount: 0 });
+    }
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const compressedImage = await compressRecipeImage(e.target.files[0]);
+      setSelectedImage(compressedImage);
     }
   };
 
@@ -173,10 +201,13 @@ function handleSubmit(event: FormEvent) {
     </li>
   ))}
   </div>
-  
-
-
-      <input type="text" name="image_url" value={recipe.image_url} onChange={handleChange} placeholder="Image URL" required className="border p-2 w-full" />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => handleImageChange(e)}
+          required
+          className="border p-2 w-full"
+        />
         <button type="submit">Add Recipe</button>
       </form>
     </div>

@@ -50,7 +50,19 @@ export async function getRecipeById(id: number): Promise<Recipe | null> {
   return data as Recipe
 }
 
-export async function addRecipe(recipe: Recipe) {
+export async function addRecipe(recipe: Recipe, imageFile: File) {
+  const { data, error: storageError  } = await supabase.storage.from('recipe-images').upload('recipes/' + crypto.randomUUID(), imageFile)
+  if (storageError) {
+    console.error('Error uploading image:', storageError)
+    return
+  }
+
+
+
+  const ImageUrl = supabase.storage.from('recipe-images').getPublicUrl(data.path).data.publicUrl
+  recipe.image_url = ImageUrl
+  console.log('Image uploaded successfully:', ImageUrl)
+
   const { error } = await supabase
     .from('recipes')
     .insert([recipe])
