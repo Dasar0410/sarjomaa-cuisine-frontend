@@ -3,6 +3,8 @@ import { UserAuth } from '../context/AuthContext'
 
 function NavigationBar() {
   const {signOut, session} = UserAuth()
+  const userId = session?.user.id
+  const isAdmin = userId === import.meta.env.VITE_ADMIN_USER_ID
 
   const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -34,9 +36,11 @@ function NavigationBar() {
             <li>
               <a href="/recipes" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Recipes</a>
             </li>
+            {isAdmin && (
             <li>
               <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Add Recipe</a>
             </li>
+            )}
             <li>
               {session &&(
               <button 
