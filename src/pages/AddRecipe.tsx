@@ -234,7 +234,6 @@ function NewRecipe() {
           type="file"
           accept="image/*"
           onChange={(e) => handleImageChange(e)}
-          required
           className="border p-2 w-full"
         />
         <button type="submit">Add Recipe</button>
