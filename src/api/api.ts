@@ -68,7 +68,7 @@ export async function addRecipe(recipe: Recipe, imageFile: File) {
     .insert([recipe])
 
   if (error) {
-    console.error('Error adding recipe:', error)
+    throw new Error('Error adding recipe: ' + error.message)
   }
 }
 
