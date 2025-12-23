@@ -28,8 +28,8 @@ function Home() {
             
             <div className='text-3xl text-center '>
             <div className='justify-center' id='recipes'>
-            <h2 className='md:text-5xl text-3xl font-bold mb-8 mt-12 text-primary '>Newest Recipes</h2>
-                <div className='md:bg-secondary md:text-secondary-foreground p-8 mb-12 card-container inline-flex center flex-wrap justify-center  rounded-3xl shadow-2xl'>
+            <h2 className='md:text-5xl text-3xl font-bold mb-8 mt-12 text-primary'>Nyeste Oppskrifter</h2>
+                <div className='md:bg-secondary md:text-secondary-foreground p-8 mb-12 card-container inline-flex center flex-wrap justify-center rounded-3xl shadow-2xl'>
                
                 {recipes.map((recipe) => (
                     <Link 
