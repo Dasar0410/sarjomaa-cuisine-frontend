@@ -40,14 +40,41 @@ function NewRecipe() {
   return compressed;
 
   }
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
   event.preventDefault();
   console.log(recipe);
   if (!selectedImage) {
     alert("Please select an image for the recipe.");
     return;
   }   
-  addRecipe(recipe, selectedImage);
+  
+  try {
+    await addRecipe(recipe, selectedImage);
+    
+    // Reset form after successful submission
+    setRecipe({
+      title: "",
+      created_at: new Date().toISOString(),
+      creator: 1,
+      description: "",
+      ingredients: [],
+      steps: [],
+      cuisine: "",
+      image_url: "",
+    });
+    setCurrentIngredient({ name: "", unit: "g", amount: 0 });
+    setCurrentStep("");
+    setSelectedImage(null);
+    
+    // Reset file input
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = "";
+    }
+  } catch (error) {
+    console.error("Error adding recipe:", error);
+    alert("Failed to add recipe. Please try again.");
+  }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
