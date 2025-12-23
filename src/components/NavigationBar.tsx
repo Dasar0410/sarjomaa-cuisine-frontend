@@ -31,25 +31,25 @@ function NavigationBar() {
         <div className="hidden w-full md:block md:w-auto text-brand" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-border rounded-lg bg-background md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-primary dark:bg-background md:dark:bg-primary">
             <li>
-              <a href="/" className="block py-2 px-3 rounded md:bg-transparent hover:opacity-80 md:text-primary-foreground md:p-0">Home</a>
+              <a href="/" className="block py-2 px-3 rounded md:bg-transparent hover:opacity-80 md:text-primary-foreground md:p-0">Hjem</a>
             </li>
             <li>
-              <a href="/recipes" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Recipes</a>
+              <a href="/recipes" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Oppskrifter</a>
             </li>
             {isAdmin && (
             <li>
-              <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Add Recipe</a>
+              <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Legg til oppskrift</a>
             </li>
             )}
             <li>
               {session &&(
               <button 
                     onClick={handleSignOut} 
-                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium md:p-0">Sign Out</button>
+                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium md:p-0">Logg ut</button>
               )}
               
               {!session &&(
-               <a href="/signup" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Sign Up</a>
+               <a href="/signin" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Logg inn</a>
               )}
 
               

@@ -68,9 +68,9 @@ export function SigninForm({ ...props }: React.ComponentProps<typeof Card>) {
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Sign in to account</CardTitle>
+        <CardTitle>Logg inn på kontoen din</CardTitle>
         <CardDescription>
-          Enter your information below to sign in to your account
+          Skriv inn informasjonen din nedenfor for å logge inn på kontoen din
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -81,16 +81,16 @@ export function SigninForm({ ...props }: React.ComponentProps<typeof Card>) {
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="ole@nordmann.no"
                 {...form.register("email")}
               />
               {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
               <FieldDescription>
-                Use the email address associated with your account.
+                Bruk e-postadressen knyttet til kontoen din.
               </FieldDescription>
             </Field>
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">Passord</FieldLabel>
               <Input id="password" type="password" {...form.register("password")} />
                 {errors.password && <p className="text-sm text-red-600 mt-1">{errors.password.message}</p>}
             </Field>
@@ -102,10 +102,10 @@ export function SigninForm({ ...props }: React.ComponentProps<typeof Card>) {
             <FieldGroup>
               <Field>
                 <Button type="submit" disabled={loading}>
-                  {loading ? "Signing In..." : "Sign in"}
+                  {loading ? "Logger inn..." : "Logg inn"}
                 </Button>
                 <FieldDescription className="px-6 text-center">
-                  Don't have an account? <Link to="/signup" className="underline">Sign up</Link>
+                  Har du ikke en konto? <Link to="/signup" className="underline">Registrer deg</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

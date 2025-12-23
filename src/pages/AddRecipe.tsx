@@ -123,9 +123,9 @@ function NewRecipe() {
       <input type="text" name="description" value={recipe.description} onChange={handleChange} placeholder="Description" required className="border p-2 w-full" />
       <select name="cuisine" value={recipe.cuisine} onChange={handleChange} required className="border p-2 min-w-80">
           <option value="">Select Cuisine</option>
-          <option value="italian">Italian</option>
-          <option value="indian">Indian</option>
-          <option value="other">Other</option>
+          <option value="italiensk">Italiensk</option>
+          <option value="indisk">Indisk</option>
+          <option value="annet">Annet</option>
         </select>
 
 

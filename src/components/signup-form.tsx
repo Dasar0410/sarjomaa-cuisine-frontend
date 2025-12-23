@@ -83,9 +83,9 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Create an account</CardTitle>
+        <CardTitle>Opprett en konto</CardTitle>
         <CardDescription>
-          Enter your information below to create your account
+          Skriv inn informasjonen din nedenfor for å opprette en konto
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -97,47 +97,47 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               </div>
             )}
             <Field>
-              <FieldLabel htmlFor="username">Username</FieldLabel>
+              <FieldLabel htmlFor="username">Brukernavn</FieldLabel>
               <Input id="username" type="text" placeholder="" {...form.register("username")} />
               {errors.username && <p className="text-sm text-red-600 mt-1">{errors.username.message}</p>}
             </Field>
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldLabel htmlFor="email">E-post</FieldLabel>
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="ole@nordmann.no"
                 {...form.register("email")}
               />
               {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
               <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
+                Vi bruker denne for å kontakte deg. Vi deler ikke e-posten din
+                med noen andre.
               </FieldDescription>
             </Field>
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">Passord</FieldLabel>
               <Input id="password" type="password" {...form.register("password")} />
                 {errors.password && <p className="text-sm text-red-600 mt-1">{errors.password.message}</p>}
               <FieldDescription>
-                Must be at least 8 characters long.
+                Må være minst 8 tegn langt.
               </FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="confirm-password">
-                Confirm Password
+                Bekreft passord
               </FieldLabel>
               <Input id="confirm-password" type="password" {...form.register("confirmPassword")} />
               {errors.confirmPassword && <p className="text-sm text-red-600 mt-1">{errors.confirmPassword.message}</p>}
-              <FieldDescription>Please confirm your password.</FieldDescription>
+              <FieldDescription>Vennligst bekreft passordet ditt.</FieldDescription>
             </Field>
             <FieldGroup>
               <Field>
                 <Button type="submit" disabled={loading}>
-                  {loading ? "Creating Account..." : "Create Account"}
+                  {loading ? "Oppretter konto..." : "Opprett konto"}
                 </Button>
                 <FieldDescription className="px-6 text-center">
-                  Already have an account? <Link to="/signin" className="underline">Sign in</Link>
+                  Har du allerede en konto? <Link to="/signin" className="underline">Logg inn</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

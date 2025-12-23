@@ -7,14 +7,12 @@ import IngredientsCard from '../components/IngredientsCard'
 import { getRecipeById } from '../api/api'
 function RecipePages() {
     const {id} = useParams<{ id: string}>() // recipes/:id
-    console.log(id)
     const [recipe, setRecipe] = useState<Recipe | null>(null)
 
     useEffect(() => {
             const fetchRecipeById = async () => {
                 const data = await getRecipeById(Number(id));
                 setRecipe(data);
-                console.log(data);
             }
             fetchRecipeById();
         },[id]);
