@@ -27,54 +27,49 @@ function NewRecipe() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   async function compressRecipeImage(file: File) {
-  const options = {
-    maxSizeMB: 1,          
-    maxWidthOrHeight: 1600,
-    useWebWorker: true,
-    fileType: "image/webp",
-    initialQuality: 0.8,
-  };
+    const options = {
+      maxSizeMB: 1,          
+      maxWidthOrHeight: 1600,
+      useWebWorker: true,
+      fileType: "image/webp",
+      initialQuality: 0.8,
+    };
 
-  const compressed = await imageCompression(file, options);
+    const compressed = await imageCompression(file, options);
 
-  return compressed;
+    return compressed;
 
   }
   async function handleSubmit(event: FormEvent) {
-  event.preventDefault();
-  console.log(recipe);
-  if (!selectedImage) {
-    alert("Please select an image for the recipe.");
-    return;
-  }   
-  
-  try {
-    await addRecipe(recipe, selectedImage);
+    event.preventDefault();
+    console.log(recipe);
+    if (!selectedImage) {
+      alert("Please select an image for the recipe.");
+      return;
+    }   
     
-    // Reset form after successful submission
-    setRecipe({
-      title: "",
-      created_at: new Date().toISOString(),
-      creator: 1,
-      description: "",
-      ingredients: [],
-      steps: [],
-      cuisine: "",
-      image_url: "",
-    });
-    setCurrentIngredient({ name: "", unit: "g", amount: 0 });
-    setCurrentStep("");
-    setSelectedImage(null);
-    
-    // Reset file input
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = "";
+    try {
+      await addRecipe(recipe, selectedImage);
+      
+      // Reset form after successful submission
+      setRecipe({
+        title: "",
+        created_at: new Date().toISOString(),
+        creator: 1,
+        description: "",
+        ingredients: [],
+        steps: [],
+        cuisine: "",
+        image_url: "",
+      });
+      setCurrentIngredient({ name: "", unit: "g", amount: 0 });
+      setCurrentStep("");
+      setSelectedImage(null);
+      
+    } catch (error) {
+      console.error("Error adding recipe:", error);
+      alert("Failed to add recipe. Please try again.");
     }
-  } catch (error) {
-    console.error("Error adding recipe:", error);
-    alert("Failed to add recipe. Please try again.");
-  }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -101,8 +96,15 @@ function NewRecipe() {
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const compressedImage = await compressRecipeImage(e.target.files[0]);
-      setSelectedImage(compressedImage);
+      try {
+        const compressedImage = await compressRecipeImage(e.target.files[0]);
+        setSelectedImage(compressedImage);
+      } catch (error) {
+        console.error("Error compressing selected image:", error);
+        alert("Failed to process the selected image. Please choose a valid image file and try again.");
+        e.target.value = "";
+        setSelectedImage(null);
+      }
     }
   };
 
