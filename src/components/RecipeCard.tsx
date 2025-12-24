@@ -4,17 +4,36 @@ import { Recipe } from '../types/recipe'
 
 function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
-    <div className=" bg-card m-4 max-w-xs rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <img className="h-64 w-96 transition-transform duration-300 hover:scale-105 hover:-translate-y-1" src={recipe.image_url} alt={recipe.title}></img>
-      <div className="px-6 py-4"> 
-        <div className="font-bold text-xl mb-2">{recipe.title}</div>
-        <p className="text-gray-700 text-base h-16">{recipe.description}</p>
-        <div className="pt-8">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{recipe.cuisine}</span>
-        
+    <div className="bg-white w-full h-full rounded-2xl overflow-hidden shadow-md border border-brand-border/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl group flex flex-col">
+      <div className="relative overflow-hidden h-40 md:h-56 flex-shrink-0">
+        <img 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+          src={recipe.image_url} 
+          alt={recipe.title}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+      <div className="px-3 py-3 md:px-6 md:py-5 flex flex-col flex-grow"> 
+        <h3 className="font-bold text-lg md:text-2xl mb-2 md:mb-3 text-brand-foreground capitalize">
+          {recipe.title}
+        </h3>
+        <p className="text-brand-foreground/70 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 flex-grow">
+          {recipe.description}
+        </p>
+        <div className="flex items-center justify-between pt-2 border-t border-brand-border/20 mt-auto">
+          <span className="inline-flex items-center bg-brand-secondary/20 text-brand-foreground rounded-full px-2 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-semibold capitalize">
+            {recipe.cuisine}
+          </span>
+          <svg 
+            className="w-4 h-4 md:w-5 md:h-5 text-brand-primary transform transition-transform group-hover:translate-x-1" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
         </div>
       </div>
-
     </div>
   )}
   export default RecipeCard;

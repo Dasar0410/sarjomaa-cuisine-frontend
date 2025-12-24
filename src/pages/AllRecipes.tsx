@@ -22,12 +22,12 @@ function AllRecipes() {
         <div> 
             <NavigationBar />
             <FilterSearch />
-            <div className='card-container flex flex-wrap justify-center'>
+            <div className='card-container columns-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 md:gap-6 px-4 py-4 space-y-4'>
             {recipes.map((recipe) => (
                 <Link 
                 key={recipe.id} 
                 to={`/recipes/${recipe.id}`} 
-                className="block text-center m-4"
+                className="block mb-4 md:mb-6 break-inside-avoid"
                 >
                 <RecipeCard recipe={recipe} />
                 </Link>
