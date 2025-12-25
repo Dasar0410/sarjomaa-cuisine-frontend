@@ -7,14 +7,12 @@ import IngredientsCard from '../components/IngredientsCard'
 import { getRecipeById } from '../api/api'
 function RecipePages() {
     const {id} = useParams<{ id: string}>() // recipes/:id
-    console.log(id)
     const [recipe, setRecipe] = useState<Recipe | null>(null)
 
     useEffect(() => {
             const fetchRecipeById = async () => {
                 const data = await getRecipeById(Number(id));
                 setRecipe(data);
-                console.log(data);
             }
             fetchRecipeById();
         },[id]);
@@ -23,11 +21,12 @@ function RecipePages() {
         <>
         
         <div className=''><NavigationBar/></div>
-        <div className='allCards mx-10 flex flex-row flex-wrap justify-center'>
-        
-        {recipe && <img src={recipe.image_url} alt={recipe.title} className='recipePageImage my-10  object-cover'/>}
-        {recipe && <IngredientsCard recipe={recipe} />}
+        <div className='md:mx-10 flex flex-row flex-wrap justify-center'>
+        <div className='w-full flex justify-center'>
+        {recipe && <img src={recipe.image_url} alt={recipe.title} className='mb-10 md:my-10 md:w-2/4  object-cover'/>}
+        </div>
        {recipe && <TitleInstructionCards recipe={recipe} />}
+       {recipe && <IngredientsCard recipe={recipe} />}
         
 
        </div>

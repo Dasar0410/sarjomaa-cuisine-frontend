@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import { Recipe, Ingredient} from '../types/recipe';
 import { addRecipe } from '../api/api';
+import imageCompression from "browser-image-compression";
 
 function NewRecipe() {
   const [recipe, setRecipe] = useState<Recipe>({
@@ -23,10 +24,52 @@ function NewRecipe() {
 
   const [currentStep, setCurrentStep] = useState<string>("");
 
-function handleSubmit(event: FormEvent) {
-  event.preventDefault();
-  console.log(recipe);
-  addRecipe(recipe);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  async function compressRecipeImage(file: File) {
+    const options = {
+      maxSizeMB: 1,          
+      maxWidthOrHeight: 1600,
+      useWebWorker: true,
+      fileType: "image/webp",
+      initialQuality: 0.8,
+    };
+
+    const compressed = await imageCompression(file, options);
+
+    return compressed;
+
+  }
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    console.log(recipe);
+    if (!selectedImage) {
+      alert("Please select an image for the recipe.");
+      return;
+    }   
+    
+    try {
+      await addRecipe(recipe, selectedImage);
+      
+      // Reset form after successful submission
+      setRecipe({
+        title: "",
+        created_at: new Date().toISOString(),
+        creator: 1,
+        description: "",
+        ingredients: [],
+        steps: [],
+        cuisine: "",
+        image_url: "",
+      });
+      setCurrentIngredient({ name: "", unit: "g", amount: 0 });
+      setCurrentStep("");
+      setSelectedImage(null);
+      
+    } catch (error) {
+      console.error("Error adding recipe:", error);
+      alert("Failed to add recipe. Please try again.");
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -51,6 +94,20 @@ function handleSubmit(event: FormEvent) {
     }
   };
 
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      try {
+        const compressedImage = await compressRecipeImage(e.target.files[0]);
+        setSelectedImage(compressedImage);
+      } catch (error) {
+        console.error("Error compressing selected image:", error);
+        alert("Failed to process the selected image. Please choose a valid image file and try again.");
+        e.target.value = "";
+        setSelectedImage(null);
+      }
+    }
+  };
+
   const removeIngredient = (index: number) => {
     setRecipe(prev => ({
       ...prev,
@@ -66,9 +123,9 @@ function handleSubmit(event: FormEvent) {
       <input type="text" name="description" value={recipe.description} onChange={handleChange} placeholder="Description" required className="border p-2 w-full" />
       <select name="cuisine" value={recipe.cuisine} onChange={handleChange} required className="border p-2 min-w-80">
           <option value="">Select Cuisine</option>
-          <option value="italian">Italian</option>
-          <option value="indian">Indian</option>
-          <option value="other">Other</option>
+          <option value="italiensk">Italiensk</option>
+          <option value="indisk">Indisk</option>
+          <option value="annet">Annet</option>
         </select>
 
 
@@ -173,10 +230,12 @@ function handleSubmit(event: FormEvent) {
     </li>
   ))}
   </div>
-  
-
-
-      <input type="text" name="image_url" value={recipe.image_url} onChange={handleChange} placeholder="Image URL" required className="border p-2 w-full" />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => handleImageChange(e)}
+          className="border p-2 w-full"
+        />
         <button type="submit">Add Recipe</button>
       </form>
     </div>

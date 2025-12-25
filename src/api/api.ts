@@ -13,7 +13,6 @@ export async function getRecipes(): Promise<Recipe[]> {
     console.error('Error fetching recipes:', error)
     return []
   }
-
   // Return an empty array if no data is returned
   return (data as Recipe[]) || []
 }
@@ -30,11 +29,9 @@ export async function getRecipeCard(i: number): Promise<Recipe[]> {
     console.error('Error fetching recipes:', error)
     return []
   }
-
   // Return an empty array if no data is returned
   return (data as Recipe[]) || []
 }
-
 
 export async function getRecipeById(id: number): Promise<Recipe | null> {
   const { data, error } = await supabase
@@ -50,16 +47,24 @@ export async function getRecipeById(id: number): Promise<Recipe | null> {
   return data as Recipe
 }
 
-export async function addRecipe(recipe: Recipe) {
+export async function addRecipe(recipe: Recipe, imageFile: File) {
+  const { data, error: storageError  } = await supabase.storage.from('recipe-images').upload('recipes/' + crypto.randomUUID(), imageFile)
+  if (storageError) {
+    throw new Error('Error uploading image: ' + storageError.message)
+  }
+
+  const imageUrl = supabase.storage.from('recipe-images').getPublicUrl(data.path).data.publicUrl
+  recipe.image_url = imageUrl
+  console.log('Image uploaded successfully:', imageUrl)
+
   const { error } = await supabase
     .from('recipes')
     .insert([recipe])
 
   if (error) {
-    console.error('Error adding recipe:', error)
+    throw new Error('Error adding recipe: ' + error.message)
   }
 }
-
 
 export async function updateRecipeDB(recipe: Recipe, id: number) {
   const {error } = await supabase
@@ -72,7 +77,6 @@ export async function updateRecipeDB(recipe: Recipe, id: number) {
     console.error('Error updating recipe:', error)
     return null
   }
-
 }
 
 export async function deleteRecipeDB(id: number) {
@@ -84,5 +88,18 @@ export async function deleteRecipeDB(id: number) {
   if (error){
     console.error('Error deleting recipe: ', error)
   }
+}
 
+export async function searchRecipes(query: string): Promise<Recipe[]> {
+  const { data, error } = await supabase
+    .from('recipes')
+    .select('*')
+    .ilike('title', `%${query}%`)
+
+  if (error) {
+    console.error('Error searching recipes:', error)
+    return []
+  }
+  // Return an empty array if no data is returned
+  return (data as Recipe[]) || []
 }

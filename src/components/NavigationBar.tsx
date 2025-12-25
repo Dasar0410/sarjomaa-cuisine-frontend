@@ -3,6 +3,8 @@ import { UserAuth } from '../context/AuthContext'
 
 function NavigationBar() {
   const {signOut, session} = UserAuth()
+  const userId = session?.user.id
+  const isAdmin = userId === import.meta.env.VITE_ADMIN_USER_ID
 
   const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -23,32 +25,31 @@ function NavigationBar() {
         <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
           <span className="sr-only">Open main menu</span>
           <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto text-brand" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-border rounded-lg bg-background md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-primary dark:bg-background md:dark:bg-primary">
             <li>
-              <a href="/" className="block py-2 px-3 rounded md:bg-transparent hover:opacity-80 md:text-primary-foreground md:p-0">Home</a>
+              <a href="/" className="block py-2 px-3 rounded md:bg-transparent hover:opacity-80 md:text-primary-foreground md:p-0">Hjem</a>
             </li>
             <li>
-              <a href="/recipes" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Recipes</a>
+              <a href="/recipes" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Oppskrifter</a>
             </li>
+            {isAdmin && (
             <li>
-              <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Add Recipe</a>
+              <a href="/add-recipe" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Legg til oppskrift</a>
             </li>
-            <li>
-              <a href="#" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Profile</a>
-            </li>
+            )}
             <li>
               {session &&(
               <button 
                     onClick={handleSignOut} 
-                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium">Sign Out</button>
+                    className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 bg-transparent border-none cursor-pointer font-medium md:p-0">Logg ut</button>
               )}
               
               {!session &&(
-               <a href="/signup" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Sign Up</a>
+               <a href="/signin" className="block py-2 px-3 rounded text-primary-foreground hover:opacity-80 md:bg-transparent md:p-0">Logg inn</a>
               )}
 
               
