@@ -4,30 +4,35 @@ import RecipeCard from '../components/RecipeCard';
 import { Link } from 'react-router-dom';
 import NavigationBar from '../components/NavigationBar'
 import FilterSearch from '../components/FilterSearch';
-import { getRecipes } from '../api/api';
+import { getRecipes, searchRecipes } from '../api/api';
 
 function AllRecipes() {
     const [recipes, setRecipes] = useState<Recipe[]>([]); // set initial state to empty array
     // const searchterm functionality tba
 
+    const onSearchChange = (term: string) => {
+        searchRecipes(term).then((data) => {
+            setRecipes(data);
+        });
+    };
+
     useEffect(() => {
         const fetchRecipes = async () => {
             const data = await getRecipes();
             setRecipes(data); 
-            console.log(data);
         }
         fetchRecipes();
     },[]);  
     return (
         <div> 
             <NavigationBar />
-            <FilterSearch />
-            <div className='card-container flex flex-wrap justify-center'>
+            <FilterSearch onSearchChange={onSearchChange} />
+            <div className='card-container columns-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 md:gap-6 px-4 py-4 space-y-4'>
             {recipes.map((recipe) => (
                 <Link 
                 key={recipe.id} 
                 to={`/recipes/${recipe.id}`} 
-                className="block text-center m-4"
+                className="block mb-4 md:mb-6 break-inside-avoid"
                 >
                 <RecipeCard recipe={recipe} />
                 </Link>

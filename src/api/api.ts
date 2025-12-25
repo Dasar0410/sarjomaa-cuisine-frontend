@@ -89,3 +89,17 @@ export async function deleteRecipeDB(id: number) {
     console.error('Error deleting recipe: ', error)
   }
 }
+
+export async function searchRecipes(query: string): Promise<Recipe[]> {
+  const { data, error } = await supabase
+    .from('recipes')
+    .select('*')
+    .ilike('title', `%${query}%`)
+
+  if (error) {
+    console.error('Error searching recipes:', error)
+    return []
+  }
+  // Return an empty array if no data is returned
+  return (data as Recipe[]) || []
+}
