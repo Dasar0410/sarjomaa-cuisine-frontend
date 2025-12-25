@@ -1,20 +1,22 @@
-import{ useState } from 'react';
+import { Input } from './ui/input';
 
-function FilterSearch() {
-    const [search, setSearch] = useState('');
+function FilterSearch({ onSearchChange }: { onSearchChange: (term: string) => void }) {
     
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(event.target.value);
+        onSearchChange(event.target.value);
     };
     
     return (
-        <div className='flex items-center justify-center min-h-40 flex-col'>
-        <p className='text-4xl'>Søk etter oppskrifter</p>
-        <input className='mt-4 ' type="text"
-        value={search}
-        onChange={handleSearch}
-        placeholder="Søk..."
+        <div className='flex items-center justify-center min-h-40 flex-col mt-6'>
+        <p className='text-3xl'>Søk etter oppskrifter</p>
+        <div className='w-3/4 md:w-2/5 mt-6 mb-8'>
+        <Input 
+            className='bg-card'
+            type="text" 
+            placeholder="Skriv inn søkeord..." 
+            onChange={handleSearch} 
         />
+        </div>
         </div>
     );
     }
